@@ -223,8 +223,7 @@ You can leverage GitHub Copilot agents with a Playwright MCP server to generate 
    - For more details, see the [Playwright MCP GitHub repo](https://github.com/microsoft/playwright-mcp).
 
 2. **Start the Playwright MCP Server**
-   - Open the Command Palette (`Ctrl+Shift+P`), search for `Playwright MCP: Start Server`, and run it.
-   - Make sure your app is running locally at [http://localhost:3000](http://localhost:3000).
+   - Open the Command Palette (`Ctrl+Shift+P`), search for `Playwright MCP: Start Server`, and start it.
 
 3. **Switch to Agent Mode in Copilot**
    - In VS Code, open the Copilot Chat sidebar.
@@ -237,6 +236,7 @@ You can leverage GitHub Copilot agents with a Playwright MCP server to generate 
 
 4. **Prompt Copilot Agent for Accurate Locators**
    - Provide the feature file as reference
+   - Make sure your [app is running locally](/?tab=readme-ov-file#running-the-app-locall) at [http://localhost:3000](http://localhost:3000)
    - Try this prompt:
 
      ```
