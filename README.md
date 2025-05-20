@@ -44,7 +44,7 @@ Make sure port 3000 is available as the app needs to run on this port. Using a d
 npm run dev
 ```
 
-The app should be running at [http://localhost:3000](http://localhost:3000)
+The web app should be now running locally at [http://localhost:3000](http://localhost:3000)
 
 ---
 
@@ -52,75 +52,126 @@ The app should be running at [http://localhost:3000](http://localhost:3000)
 
 In this exercise, you'll practice writing Cucumber (Gherkin) scenarios that describe the core functionality of the movies app. Focus on what the user wants to achieve, not how the UI looks or is implemented.
 
-### Functional Actions to Try
+### Familiarise yourself with the movie web app
 - Browse the list of movies
 - Search a movie
 - View details of a movie
 - Switch between dark and light mode
 - (If available) Log in and log out
 
-### Example Scenario: Browse the List of Movies
-
-```gherkin
-Feature: Browse Movies
-  As a movie fan
-  I want to see a list of available movies
-  So that I can choose one to watch
-
-  Scenario: Viewing the movies list
-    Given the movies app is running
-    When the user navigates to the homepage
-    Then the user should see a list of movies
-```
-
 ### Your Turn: Write a Scenario for Searching a Movie
 
 Write a Gherkin scenario that describes how a user would search for a movie by title. Focus on the user's intent and the expected outcome, not the UI steps (e.g., avoid mentioning clicking buttons or entering text in fields directly).
 
-#### Guidance for Writing Good Scenarios
-- Use the structure: `Given` (initial context), `When` (action), `Then` (expected outcome)
-- Keep steps high-level and focused on behavior, not UI details
-- Make scenarios readable and meaningful to both technical and non-technical team members
-- Example scenario ideas:
+Example scenario ideas:
   - Searching for a movie that exists
   - Searching for a movie that does not exist
   - Searching with an empty query
 
-#### Example Prompt for Students
-> Write a scenario for searching for a movie called "Inception". What should happen if the movie exists? What if it does not?
+When you're done, share your scenarios with the group for feedback and discussion.
 
-#### More Guidance
+<details>
+<summary>✅ <strong>Guidance for Writing Good Scenarios</strong></summary>
+
+- Use the structure: <code>Given</code> (initial context), <code>When</code> (action), <code>Then</code> (expected outcome)
+- Keep steps high-level and focused on behavior, not UI details
+- Make scenarios readable and meaningful to both technical and non-technical team members
+
+❌ <strong>Additionally</strong>
 - Avoid steps like "click the search button"; instead, use "the user searches for a movie by title"
 - Use clear and concise language
 - Each scenario should describe a single behavior or outcome
 
-When you're done, share your scenarios with the group for feedback and discussion.
+</details>
+
 
 ---
 
 ## Exercise 2: Your First Playwright Test
 
-**Goal:** Write a Playwright test to verify that the homepage loads and displays a list of movies.
+**Goal:** Write a Playwright test to verify that searching for a movie displays the correct results.
 
-```gherkin
-Feature: Movies Homepage
+### Step 1: Implement Your Scenario with a Cucumber Framework
 
-  Scenario: User visits the homepage
-    Given the movies app is running
-    When the user navigates to "http://localhost:3000"
-    Then the user should see a list of movies
-```
+You can use a Cucumber framework to automate your Gherkin scenarios. Below are examples for both JavaScript/TypeScript and C# using [Reqnroll](https://docs.reqnroll.net/latest/quickstart/index.html).
 
-**Playwright Example:**
-```js
-import { test, expect } from '@playwright/test';
+#### JavaScript/TypeScript Example (using Cucumber.js)
 
-test('homepage displays list of movies', async ({ page }) => {
-  await page.goto('http://localhost:3000');
-  await expect(page.locator('.movie-list')).toBeVisible();
-  await expect(page.locator('.movie-card')).toHaveCountGreaterThan(0);
-});
-```
+1. Install dependencies:
+   ```bash
+   npm install --save-dev @cucumber/cucumber playwright
+   ```
+2. Create a step definition file (e.g., `features/step_definitions/movies.steps.js`):
+   ```js
+   const { Given, When, Then } = require('@cucumber/cucumber');
+   const { chromium } = require('playwright');
+
+   let browser, page;
+
+   Given('the movies app is running', async function () {
+     browser = await chromium.launch();
+     page = await browser.newPage();
+   });
+
+   When('the user searches for {string}', async function (title) {
+     await page.goto('http://localhost:3000');
+     await page.fill("input[placeholder='Search movies']", title); // Adjust selector as needed
+     await page.press("input[placeholder='Search movies']", 'Enter');
+   });
+
+   Then('the user should see results related to {string}', async function (title) {
+     await page.waitForSelector('.movie-list');
+     const results = await page.$$(".movie-card:has-text('" + title + "')");
+     if (results.length === 0) throw new Error('No results found for ' + title);
+     await browser.close();
+   });
+   ```
+3. Run your tests with:
+   ```bash
+   npx cucumber-js
+   ```
+
+#### C# Example (using Reqnroll + Playwright)
+
+1. Follow the [Reqnroll quickstart guide](https://docs.reqnroll.net/latest/quickstart/index.html) and [Microsoft.Playwright](https://playwright.dev/dotnet/) to set up your project.
+2. Example step definitions:
+   ```csharp
+   using Reqnroll;
+   using Microsoft.Playwright;
+   using System.Threading.Tasks;
+
+   [Binding]
+   public class MovieSearchSteps
+   {
+       private IPage page;
+       private IBrowser browser;
+
+       [Given(@"the movies app is running")]
+       public async Task GivenTheMoviesAppIsRunning()
+       {
+           var playwright = await Playwright.CreateAsync();
+           browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true });
+           page = await browser.NewPageAsync();
+       }
+
+       [When(@"the user searches for "(.*)"")]
+       public async Task WhenTheUserSearchesFor(string title)
+       {
+           await page.GotoAsync("http://localhost:3000");
+           await page.FillAsync("input[placeholder='Search movies']", title); // Adjust selector as needed
+           await page.PressAsync("input[placeholder='Search movies']", "Enter");
+       }
+
+       [Then(@"the user should see results related to "(.*)"")]
+       public async Task ThenTheUserShouldSeeResultsRelatedTo(string title)
+       {
+           var results = await page.Locator($".movie-card:has-text('{title}')").CountAsync();
+           if (results == 0) throw new Exception($"No results found for {title}");
+           await browser.CloseAsync();
+       }
+   }
+   ```
+3. Run your tests using your test runner (e.g., Visual Studio Test Explorer).
 
 ---
 
@@ -195,3 +246,88 @@ Feature: User Authentication
 ---
 
 Feel free to expand these exercises or add more scenarios as you explore the app!
+
+### Example Scenario: Search for a Movie
+
+You can implement the following scenario in different languages. Switch tabs below to see examples for JavaScript/TypeScript and C#.
+
+<!-- tabs -->
+
+#### JavaScript/TypeScript ([Cucumber.js](https://github.com/cucumber/cucumber-js))
+
+```gherkin
+Feature: Movie Search
+  As a movie fan
+  I want to search for a movie by title
+  So that I can quickly find the movie I want to watch
+
+  Scenario: Searching for a movie that exists
+    Given the movies app is running
+    When the user searches for "Inception"
+    Then the user should see results related to "Inception"
+```
+
+#### C# ([Reqnroll](https://docs.reqnroll.net/latest/quickstart/index.html) + [Microsoft.Playwright](https://playwright.dev/dotnet/))
+
+```gherkin
+Feature: Movie Search
+  As a movie fan
+  I want to search for a movie by title
+  So that I can quickly find the movie I want to watch
+
+  Scenario: Searching for a movie that exists
+    Given the movies app is running
+    When the user searches for "Inception"
+    Then the user should see results related to "Inception"
+```
+
+<!-- end tabs -->
+
+#### C# Step Definitions Example (Playwright + Reqnroll)
+```csharp
+using Reqnroll;
+using Microsoft.Playwright;
+using System.Threading.Tasks;
+
+[Binding]
+public class MovieSearchSteps
+{
+    private IPage page;
+    private IBrowser browser;
+
+    [Given(@"the movies app is running")]
+    public async Task GivenTheMoviesAppIsRunning()
+    {
+        var playwright = await Playwright.CreateAsync();
+        browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true });
+        page = await browser.NewPageAsync();
+    }
+
+    [When(@"the user searches for "(.*)"")]
+    public async Task WhenTheUserSearchesFor(string title)
+    {
+        await page.GotoAsync("http://localhost:3000");
+        await page.FillAsync("input[placeholder='Search movies']", title); // Adjust selector as needed
+        await page.PressAsync("input[placeholder='Search movies']", "Enter");
+    }
+
+    [Then(@"the user should see results related to "(.*)"")]
+    public async Task ThenTheUserShouldSeeResultsRelatedTo(string title)
+    {
+        var results = await page.Locator($".movie-card:has-text('{title}')").CountAsync();
+        if (results == 0) throw new Exception($"No results found for {title}");
+        await browser.CloseAsync();
+    }
+}
+```
+
+---
+
+### Bonus: Use GitHub Copilot Agents with Playwright MCP Server
+
+You can leverage GitHub Copilot agents with a Playwright MCP server to generate accurate test code and selectors by interacting with your running app.
+
+**Try this prompt with Copilot Agents:**
+> "Use Playwright MCP to navigate to http://localhost:3000 and generate step definitions for searching for a movie called 'Inception'. Make sure the locators match the actual UI elements."
+
+This will help you generate code that is tailored to your app's real DOM and selectors, improving test reliability.
