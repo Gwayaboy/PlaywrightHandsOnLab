@@ -87,7 +87,7 @@ When you're done, share your scenarios with the group for feedback and discussio
 
 ---
 
-## Exercise 2: Your First Playwright Test
+## Exercise 2: Implement your BDD Playwright Test
 
 **Goal:** Write a Playwright test to verify that searching for a movie displays the correct results.
 
