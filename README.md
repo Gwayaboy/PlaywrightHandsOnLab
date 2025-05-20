@@ -40,7 +40,9 @@ npm install
 
 Make sure port 3000 is available as the app needs to run on this port. Using a different port will result in errors because the movies loaded from the API use this port.
 
-- `npm run dev`
+```bash
+npm run dev
+```
 
 The app should be running at [http://localhost:3000](http://localhost:3000)
 
