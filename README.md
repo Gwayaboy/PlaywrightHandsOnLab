@@ -134,9 +134,9 @@ You can use a Cucumber framework to automate your Gherkin scenarios. Below are e
   </details>
   
   3. Run your tests with:
-   ```bash
-   npx cucumber-js
-   ```
+      ```bash
+      npx cucumber-js
+      ```
 
 #### C# Example (using Reqnroll + Playwright)
 
