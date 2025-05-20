@@ -95,14 +95,26 @@ When you're done, share your scenarios with the group for feedback and discussio
 
 You can use a Cucumber framework to automate your Gherkin scenarios. Below are examples for both JavaScript/TypeScript and C# using [Reqnroll](https://docs.reqnroll.net/latest/quickstart/index.html).
 
+ ```gherkin
+   Feature: Movie Search
+     As a movie fan
+     I want to search for a movie by title
+     So that I can quickly find the movie I want to watch
+
+     Scenario: Searching for a movie that exists
+       Given the movies app is running
+       When the user searches for "Inception"
+       Then the user should see results related to "Inception"
+   ```
+
 #### JavaScript/TypeScript Example (using Cucumber.js)
 
 1. Install cucumber dependencies:
    ```bash
    npm install --save-dev @cucumber/cucumber playwright
    ```
-
-2.  Create a step definition file (e.g., <code>features/step_definitions/movies.steps.js</code>):
+2. Create a `.feature` file to store your Feature and scenario (e.g., `features/movie-search.feature`). 
+3. Create a step definition file (e.g., <code>features/step_definitions/movies.steps.js</code>):
     <details>
       <summary>Reveal sample code (if you're stuck)</summary>
 
@@ -133,7 +145,7 @@ You can use a Cucumber framework to automate your Gherkin scenarios. Below are e
     
   </details>
   
-  3. Run your tests with:
+  4. Run your tests with:
       ```bash
       npx cucumber-js
       ```
@@ -141,7 +153,8 @@ You can use a Cucumber framework to automate your Gherkin scenarios. Below are e
 #### C# Example (using Reqnroll + Playwright)
 
 1. Follow the [Reqnroll quickstart guide](https://docs.reqnroll.net/latest/quickstart/index.html) and [Microsoft.Playwright](https://playwright.dev/dotnet/) to set up your project.
-2. <details>
+2. Create a `.feature` file to store your Feature and scenario (e.g., `MovieSearch.feature`). Example content:   
+3. <details>
    <summary>Click to reveal a sample step definition class (if you're stuck)</summary>
    <p>
    Example step definitions:
@@ -184,7 +197,7 @@ You can use a Cucumber framework to automate your Gherkin scenarios. Below are e
    }
    ```
    </details>
-3. Run your tests using your test runner (e.g., Visual Studio Test Explorer).
+4. Run your tests using your test runner (e.g., Visual Studio Test Explorer).
 
 ---
 
