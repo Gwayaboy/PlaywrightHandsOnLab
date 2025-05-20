@@ -26,6 +26,8 @@ In this hands-on session, you will learn the fundamentals of UI automation using
 
 To get started, follow the official instructions for the [playwright-movies-app](https://github.com/debs-obrien/playwright-movies-app):
 
+Open a bash, command or powershell prompt:
+
 ### [Installation](https://github.com/debs-obrien/playwright-movies-app?tab=readme-ov-file#installation)
 
 Clone the repository and install dependencies:
