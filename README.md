@@ -1,4 +1,4 @@
-# Playwright Hands Lunch & Learn
+# Playwright Hands-on Lunch & Learn
 
 Welcome to the Playwright Hands-on & Lunch Learn!  
 In this hands-on session, you will learn the fundamentals of UI automation using [Playwright](https://playwright.dev/) by testing the [playwright-movies-app](https://github.com/debs-obrien/playwright-movies-app).
