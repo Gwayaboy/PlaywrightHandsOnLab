@@ -1,10 +1,13 @@
 # Playwright Hands Lunch & Learn
 
-Welcome to the Playwright Hands Lunch & Learn!  
+Welcome to the Playwright Hands & Lunch Learn!  
 In this hands-on session, you will learn the fundamentals of UI automation using [Playwright](https://playwright.dev/) by testing the [playwright-movies-app](https://github.com/debs-obrien/playwright-movies-app).
 
 ## Agenda
 
+- Brief overview of Behaviour Driven Development (BDD)
+  - [Gherkin Fundamentals](https://cucumber.io/docs/gherkin/reference/)
+  - [Acceptance Testing](https://www.agilealliance.org/glossary/acceptance/)
 - Introduction to Playwright
 - Setting up the project
 - Writing and running your first Playwright test
@@ -16,43 +19,80 @@ In this hands-on session, you will learn the fundamentals of UI automation using
 ## Prerequisites
 
 - Node.js (v18+ recommended)
-- Git
-- [playwright-movies-app](https://github.com/debs-obrien/playwright-movies-app) running locally at [http://localhost:3000](http://localhost:3000)
 
 ---
 
 ## Getting Started
 
-1. **Clone this repository:**
-   ```bash
-   git clone https://github.com/your-org/Playwright-Hands-Lunch-Learn.git
-   cd Playwright-Hands-Lunch-Learn
-   ```
+To get started, follow the official instructions for the [playwright-movies-app](https://github.com/debs-obrien/playwright-movies-app):
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+### [Installation](https://github.com/debs-obrien/playwright-movies-app?tab=readme-ov-file#installation)
 
-3. **Start the movies app (in a separate terminal):**
-   ```bash
-   cd path/to/playwright-movies-app
-   npm install
-   npm run dev
-   # App should be running at http://localhost:3000
-   ```
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/debs-obrien/playwright-movies-app.git
+cd playwright-movies-app
+npm install
+```
+
+### [Running the App Locally](https://github.com/debs-obrien/playwright-movies-app?tab=readme-ov-file#running-the-app-locally)
+
+Make sure port 3000 is available as the app needs to run on this port. Using a different port will result in errors because the movies loaded from the API use this port.
+
+- `npm run dev`
+
+The app should be running at [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## Exercise 1: Explore the Movies App
+## Exercise 1: Describe Movie App Scenarios with Gherkin
 
-- Open [http://localhost:3000](http://localhost:3000)
-- Try the following:
-  - Browse the list of movies
-  - Use the search bar to find a movie
-  - Click on a movie to view its details
-  - Switch between dark and light mode
-  - (If available) Log in and log out
+In this exercise, you'll practice writing Cucumber (Gherkin) scenarios that describe the core functionality of the movies app. Focus on what the user wants to achieve, not how the UI looks or is implemented.
+
+### Functional Actions to Try
+- Browse the list of movies
+- Search a movie
+- View details of a movie
+- Switch between dark and light mode
+- (If available) Log in and log out
+
+### Example Scenario: Browse the List of Movies
+
+```gherkin
+Feature: Browse Movies
+  As a movie fan
+  I want to see a list of available movies
+  So that I can choose one to watch
+
+  Scenario: Viewing the movies list
+    Given the movies app is running
+    When the user navigates to the homepage
+    Then the user should see a list of movies
+```
+
+### Your Turn: Write a Scenario for Searching a Movie
+
+Write a Gherkin scenario that describes how a user would search for a movie by title. Focus on the user's intent and the expected outcome, not the UI steps (e.g., avoid mentioning clicking buttons or entering text in fields directly).
+
+#### Guidance for Writing Good Scenarios
+- Use the structure: `Given` (initial context), `When` (action), `Then` (expected outcome)
+- Keep steps high-level and focused on behavior, not UI details
+- Make scenarios readable and meaningful to both technical and non-technical team members
+- Example scenario ideas:
+  - Searching for a movie that exists
+  - Searching for a movie that does not exist
+  - Searching with an empty query
+
+#### Example Prompt for Students
+> Write a scenario for searching for a movie called "Inception". What should happen if the movie exists? What if it does not?
+
+#### More Guidance
+- Avoid steps like "click the search button"; instead, use "the user searches for a movie by title"
+- Use clear and concise language
+- Each scenario should describe a single behavior or outcome
+
+When you're done, share your scenarios with the group for feedback and discussion.
 
 ---
 
