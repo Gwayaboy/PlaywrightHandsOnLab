@@ -95,6 +95,8 @@ When you're done, share your scenarios with the group for feedback and discussio
 
 You can use a Cucumber framework to automate your Gherkin scenarios. Below are examples for both JavaScript/TypeScript and C# using [Reqnroll](https://docs.reqnroll.net/latest/quickstart/index.html).
 
+An example ```Movie Search``` Feature and ```Searching for a movie that exists``` scenario:
+
  ```gherkin
    Feature: Movie Search
      As a movie fan
@@ -103,8 +105,8 @@ You can use a Cucumber framework to automate your Gherkin scenarios. Below are e
 
      Scenario: Searching for a movie that exists
        Given the movies app is running
-       When the user searches for "Inception"
-       Then the user should see results related to "Inception"
+       When the user searches for "Sonic the Hedgehog 3"
+       Then the user should see results related to "Sonic the Hedgehog 3"
    ```
 
 #### JavaScript/TypeScript Example (using Cucumber.js)
@@ -197,7 +199,10 @@ You can use a Cucumber framework to automate your Gherkin scenarios. Below are e
    }
    ```
    </details>
-4. Run your tests using your test runner (e.g., Visual Studio Test Explorer).
+4. Run your tests with.
+    ```bash
+    dotnet test
+    ```
 
 ---
 
@@ -207,12 +212,7 @@ You can leverage GitHub Copilot agents with a Playwright MCP server to generate 
 
 #### How to Switch to Agent Mode and Install Playwright MCP Server
 
-1. **Switch to Agent Mode in Copilot**
-   - In VS Code, open the Copilot Chat sidebar.
-   - Click the Agent Mode icon (robot head) to enable Agent Mode.
-   - Select "Playwright MCP" as your agent.
-
-2. **Install Playwright MCP Server**
+1. **Install Playwright MCP Server**
    - You can install the Playwright MCP extension directly from the VS Code Marketplace:
 
      [![Install in VS Code](https://img.shields.io/badge/Install%20in-VS%20Code-blue?logo=visualstudiocode)](vscode:extension/microsoft.playwright-mcp)
@@ -220,14 +220,25 @@ You can leverage GitHub Copilot agents with a Playwright MCP server to generate 
 
    - For more details, see the [Playwright MCP GitHub repo](https://github.com/microsoft/playwright-mcp).
 
+2. **Switch to Agent Mode in Copilot**
+   - In VS Code, open the Copilot Chat sidebar.
+   - Select Agent Mode from the drop-down to enable Agent Mode.
+
+    ![alt text](assets/AgentMode.png)
+   - Click on the tools icon to validate Playwright MCP tools are available
+
+    ![alt text](assets/MCP_Tools.png)
+
+ 
 3. **Start the Playwright MCP Server**
    - Open the Command Palette (`Ctrl+Shift+P`), search for `Playwright MCP: Start Server`, and run it.
    - Make sure your app is running locally at [http://localhost:3000](http://localhost:3000).
 
 4. **Prompt Copilot Agent for Accurate Locators**
+   - Provide the feature file as reference
    - Try this prompt:
 
-     > Navigate to http://localhost:3000 and generate step definitions for searching for a movie called 'Inception'. Make sure the locators match the actual UI elements.
+     > Based on the feature file, implement the scenario using cucumber js. Feel free to navigate to http://localhost:3000 and generate step definitions for searching for a movie called 'Sonic The HedheHog 3'. Make sure the locators match the actual UI elements.
 
 This will help you generate code that is tailored to your app's real DOM and selectors, improving test reliability.
 
