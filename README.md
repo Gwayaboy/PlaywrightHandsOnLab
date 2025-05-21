@@ -234,7 +234,7 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
     ```bash
     dotnet test
     ```
-
+---
 ### Bonus (optional): Use GitHub Copilot Agents with Playwright MCP Server
 
 You can leverage GitHub Copilot agents with a Playwright MCP server to generate accurate test code and selectors by interacting with your running app.
