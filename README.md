@@ -110,9 +110,9 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
      So that I can quickly find the movie I want to watch
 
      Scenario: Searching for a movie that exists
-       Given the movies app is running
-       When the user searches for "Sonic the Hedgehog 3"
-       Then the user should see results related to "Sonic the Hedgehog 3"
+       Given I am on web movies app landing page
+       When I search for "Sonic the Hedgehog 3"
+       Then I should see results related to "Sonic the Hedgehog 3"
    ```
 
 #### JavaScript/TypeScript Example (using Cucumber.js)
@@ -124,16 +124,8 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
    ```
 3. Create a `.feature` file to store your Feature and scenario (e.g., `features/movie-search.feature`). 
 
-4. Create a step definition file (e.g., <code>features/movies-search.js</code>):
-5. Create a `cucumber.yml` configuration file at the root of your solution
-    ```
-    default:
-      require:
-        - features/movies-search.js
-      paths:
-        - features/*.feature
-    ```
-6. Implement the scenarios steps in your `features/movie-search.feature`
+4. Create a step definition file (e.g., <code>features/steps/movies-search.js</code>):
+5. Implement the scenarios steps in your `features/movie-search.feature`
     <details>
       <summary>Reveal sample code (if you're stuck)</summary>
 
@@ -143,18 +135,18 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
 
       let browser, page;
 
-      Given('the movies app is running', async function () {
+      Given('I am on web movies app landing page', async function () {
         browser = await chromium.launch();
         page = await browser.newPage();
+        await page.goto('http://localhost:3000');
       });
 
-      When('the user searches for {string}', async function (title) {
-        await page.goto('http://localhost:3000');
+      When('I search for {string}', async function (title) {       
         await page.fill("input[placeholder='Search movies']", title); // Adjust selector as needed
         await page.press("input[placeholder='Search movies']", 'Enter');
       });
 
-      Then('the user should see results related to {string}', async function (title) {
+      Then('I should see results related to {string}', async function (title) {
         await page.waitForSelector('.movie-list');
         const results = await page.$$(".movie-card:has-text('" + title + "')");
         if (results.length === 0) throw new Error('No results found for ' + title);
@@ -164,9 +156,9 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
     
   </details>
   
-  7. Run your tests with:
+  6. Run your tests with:
       ```bash
-      npx cucumber-js --config cucumber.yml
+      npx cucumber-js
       ```
 
 #### C# Example (using Reqnroll + Playwright)
@@ -191,7 +183,7 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
        private IPage page;
        private IBrowser browser;
 
-       [Given(@"the movies app is running")]
+       [Given(@"I am on web movies app landing page")]
        public async Task GivenTheMoviesAppIsRunning()
        {
            var playwright = await Playwright.CreateAsync();
@@ -199,7 +191,7 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
            page = await browser.NewPageAsync();
        }
 
-       [When(@"the user searches for "(.*)"")]
+       [When(@"I search for "(.*)"")]
        public async Task WhenTheUserSearchesFor(string title)
        {
            await page.GotoAsync("http://localhost:3000");
@@ -207,7 +199,7 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
            await page.PressAsync("input[placeholder='Search movies']", "Enter");
        }
 
-       [Then(@"the user should see results related to "(.*)"")]
+       [Then(@"I should see results related to "(.*)"")]
        public async Task ThenTheUserShouldSeeResultsRelatedTo(string title)
        {
            var results = await page.Locator($".movie-card:has-text('{title}')").CountAsync();
