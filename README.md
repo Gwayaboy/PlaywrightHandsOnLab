@@ -21,12 +21,8 @@ In this hands-on session, you will learn the fundamentals of UI automation using
 
 ## Prerequisites
 
-- [Git for Windows](https://git-scm.com/downloads/win)
-- [VS Code](https://code.visualstudio.com/?wt.mc_id=vscom_downloads)
-- [Node.js](https://nodejs.org/en) (v18+ recommended)
-- [.NET 8+](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) (For C# implementation)
-
-
+- Node.js (v18+ recommended)
+- VS Code
 
 ---
 
@@ -218,7 +214,7 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
 
 ### Bonus: Use GitHub Copilot Agents with Playwright MCP Server
 
-You can leverage GitHub Copilot agents with a Playwright MCP server to generate accurate test code with optimised locators by interacting with your running web app.
+You can leverage GitHub Copilot agents with a Playwright MCP server to generate accurate test code and selectors by interacting with your running app.
 
 #### How to Switch to Agent Mode and Install Playwright MCP Server
 
@@ -246,24 +242,15 @@ You can leverage GitHub Copilot agents with a Playwright MCP server to generate 
    - Provide the feature file as reference
    - Make sure your [app is running locally](/?tab=readme-ov-file#running-the-app-locall) at [http://localhost:3000](http://localhost:3000)
    - Create a `generate_test_prompt.md` file to your solutions under `.github/prompts` and copy/paste the following instructions:
-   
+     ```
     ```
-      - You are a Playwright test generator.
-      - You are given a scenario, and your task is to generate a Playwright test.
-      - Do not generate test code based on the scenario alone.
-      - Do run steps one by one using the tools provided by Playwright.
-      - Only after all steps are completed, emit a Playwright TypeScript file.
-      - Save the generated test file in the tests directory.
-      - Execute the test file and iterate until the test passes.
-    ```      
-    - Add the `generate_test_prompt.md` as reference also
-    - In your GitHub copilot chat windows agent mode copy/paste this prompt:    
-    ```
-    Based on the feature file, implement the scenario using a framework that implements cucumber. 
-    Feel free to navigate to http://localhost:3000 and generate step definitions for searching for a movie called 'Sonic The HedheHog 3'. Make sure the locators match the actual UI elements.
-    ```
-    
+   - Try this prompt:
 
-    This will help you generate tests that are tailored to your app's real DOM and selectors, improving test reliability.
+     ```
+     Based on the feature file, implement the scenario using a framework that implements cucumber. 
+     Feel free to navigate to http://localhost:3000 and generate step definitions for searching for a movie called 'Sonic The HedheHog 3'. Make sure the locators match the actual UI elements.
+     ```
+
+This will help you generate code that is tailored to your app's real DOM and selectors, improving test reliability.
 
 ---
