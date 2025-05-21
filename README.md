@@ -197,8 +197,10 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
        public async Task WhenTheUserSearchesFor(string title)
        {
            await page.GotoAsync("http://localhost:3000");
-           await page.FillAsync("input[placeholder='Search movies']", title); // Adjust selector as needed
-           await page.PressAsync("input[placeholder='Search movies']", "Enter");
+           await page.FetByRole('search').click();
+           var searchBox = await page.getByRole('textbox', { name: 'Search Input' });
+           await searchBox.FillAsync(title); // Adjust selector as needed
+           await searchBox.PressAsync("Enter");
        }
 
        [Then(@"I should see results related to "(.*)"")]
