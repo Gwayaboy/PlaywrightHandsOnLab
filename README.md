@@ -63,7 +63,7 @@ In this exercise, you'll practice writing Cucumber (Gherkin) scenarios that desc
 - Search a movie
 - View details of a movie
 - Switch between dark and light mode
-- (If available) Log in and log out
+- Log in and log out with test user name `me@outlook.com` and password `12345`
 
 ### Write a Scenario for Searching a Movie
 
@@ -117,12 +117,23 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
 
 #### JavaScript/TypeScript Example (using Cucumber.js)
 
-1. Install cucumber dependencies:
+1. Create a new folder for your test project
+2. Install cucumber dependencies:
    ```bash
    npm install --save-dev @cucumber/cucumber playwright
    ```
-2. Create a `.feature` file to store your Feature and scenario (e.g., `features/movie-search.feature`). 
-3. Create a step definition file (e.g., <code>features/step_definitions/movies.steps.js</code>):
+3. Create a `.feature` file to store your Feature and scenario (e.g., `features/movie-search.feature`). 
+
+4. Create a step definition file (e.g., <code>features/movies-search.js</code>):
+5. Create a `cucumber.yml` configuration file at the root of your solution
+    ```
+    default:
+      require:
+        - features/movies-search.js
+      paths:
+        - features/*.feature
+    ```
+6. Implement the scenarios steps in your `features/movie-search.feature`
     <details>
       <summary>Reveal sample code (if you're stuck)</summary>
 
@@ -153,16 +164,17 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
     
   </details>
   
-  4. Run your tests with:
+  7. Run your tests with:
       ```bash
-      npx cucumber-js
+      npx cucumber-js --config cucumber.yml
       ```
 
 #### C# Example (using Reqnroll + Playwright)
 
 1. Follow the [Reqnroll quickstart guide](https://docs.reqnroll.net/latest/quickstart/index.html) and [Microsoft.Playwright](https://playwright.dev/dotnet/) to set up your project.
-2. Create a `.feature` file to store your Feature and scenario (e.g., `MovieSearch.feature`). Example content:   
-3. <details>
+2. Create a new solution/folder for your test project
+3. Create a `.feature` file to store your Feature and scenario (e.g., `MovieSearch.feature`). Example content:   
+4. <details>
    <summary>Click to reveal a sample step definition class (if you're stuck)</summary>
    <p>
    Example step definitions:
@@ -205,7 +217,7 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
    }
    ```
    </details>
-4. Run your tests with.
+5. Run your tests with.
     ```bash
     dotnet test
     ```
