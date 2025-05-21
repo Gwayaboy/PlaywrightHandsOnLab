@@ -186,25 +186,26 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
        private IBrowser browser;
 
        [Given(@"I am on web movies app landing page")]
-       public async Task GivenTheMoviesAppIsRunning()
+       public async Task GivenIamOnTheWebMoviesAppLandingPage()
        {
            var playwright = await Playwright.CreateAsync();
            browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true });
            page = await browser.NewPageAsync();
+           await page.GotoAsync("http://localhost:3000");
+           
        }
 
        [When(@"I search for "(.*)"")]
-       public async Task WhenTheUserSearchesFor(string title)
+       public async Task WhenISearchFor(string title)
        {
-           await page.GotoAsync("http://localhost:3000");
-           await page.FetByRole('search').click();
+           await page.GetByRole('search').click();
            var searchBox = await page.getByRole('textbox', { name: 'Search Input' });
            await searchBox.FillAsync(title); // Adjust selector as needed
            await searchBox.PressAsync("Enter");
        }
 
        [Then(@"I should see results related to "(.*)"")]
-       public async Task ThenTheUserShouldSeeResultsRelatedTo(string title)
+       public async Task ThenIShouldSeeResultsRelatedTo(string title)
        {
            var results = await page.Locator($".movie-card:has-text('{title}')").CountAsync();
            if (results == 0) throw new Exception($"No results found for {title}");
@@ -249,7 +250,7 @@ You can leverage GitHub Copilot agents with a Playwright MCP server to generate 
 4. **Prompt Copilot Agent for Accurate Locators**
    - Provide the feature file as reference
    - Make sure your [app is running locally](/?tab=readme-ov-file#running-the-app-locall) at [http://localhost:3000](http://localhost:3000)
-   - Create a `generate_test_prompt.md` file to your solutions under `.github/prompts` and copy/paste the following instructions:
+   - Create a `test_prompt.md` file to your solutions under `.github/prompts` and copy/paste the following instructions:
      ```
       - You are a Playwright test generator.
       - You are given a scenario, and your task is to generate a Playwright test.
