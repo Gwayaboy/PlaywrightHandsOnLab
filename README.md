@@ -256,6 +256,7 @@ You can leverage GitHub Copilot agents with a Playwright MCP server to generate 
       - Save the generated test file in the tests directory.
       - Execute the test file and iterate until the test passes.
     ```      
+    - Add the `generate_test_prompt.md` as reference also
     - In your GitHub copilot chat windows agent mode copy/paste this prompt:    
     ```
     Based on the feature file, implement the scenario using a framework that implements cucumber. 
