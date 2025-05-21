@@ -21,8 +21,10 @@ In this hands-on session, you will learn the fundamentals of UI automation using
 
 ## Prerequisites
 
-- Node.js (v18+ recommended)
-- VS Code
+- [Git for Windows](https://gitforwindows.org/)
+- [Node.js/npm (v18+ recommended)](https://nodejs.org/en)
+- [VS Code](https://code.visualstudio.com/Download)
+
 
 ---
 
