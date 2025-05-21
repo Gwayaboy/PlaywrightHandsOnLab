@@ -346,6 +346,6 @@ Try implementing additional API tests based on the scenarios in the app. Here ar
 
 Challenge yourself to:
 - Write the test without looking at the sample code first.
-- Compare your implementation to the examples in `api.spec.ts` if you get stuck.
+- Compare your implementation to the examples in [`api.spec.ts`](https://github.com/debs-obrien/playwright-movies-app/blob/main/tests/logged-out/api.spec.ts) if you get stuck.
 
 ---
