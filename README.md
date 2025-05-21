@@ -264,6 +264,6 @@ You can leverage GitHub Copilot agents with a Playwright MCP server to generate 
     ```
     
 
-    This will help you generate code that is tailored to your app's real DOM and selectors, improving test reliability.
+    This will help you generate tests that are tailored to your app's real DOM and selectors, improving test reliability.
 
 ---
