@@ -124,7 +124,21 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
    ```
 3. Create a `.feature` file to store your Feature and scenario (e.g., `features/movie-search.feature`). 
 
-4. Create a step definition file (e.g., <code>features/steps/movies-search.js</code>):
+4. Create a step definition file (e.g., <code>steps/movies-search.js</code>):
+  A typical cucumber js project structure 
+    ```
+    project-root/
+    ├── src/
+    │   ├── features/
+    │   │   └── *.feature
+    │   ├── steps/
+    │   │   └── *.js
+    │   └── config/
+    │       └── cucumber.js
+    ├── package.json
+    ├── tsconfig.json
+    ```
+
 5. Implement the scenarios steps in your `features/movie-search.feature`
     <details>
       <summary>Reveal sample code (if you're stuck)</summary>
