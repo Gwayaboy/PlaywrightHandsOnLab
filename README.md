@@ -288,21 +288,38 @@ You can use Playwright’s API testing capabilities to directly test your backen
     <summary>Reveal sample code (if you're stuck)</summary>
 
     ```csharp
-    using Microsoft.Playwright.NUnit;
+    using Microsoft.Playwright;
     using NUnit.Framework;
+    using System.Text.Json;
     using System.Threading.Tasks;
 
-    public class ApiSearchMovieTests : PageTest
+    public class ApiSearchMovieTests
     {
+        private IAPIRequestContext _request;
+
+        [SetUp]
+        public async Task SetUp()
+        {
+            var playwright = await Playwright.CreateAsync();
+            _request = await playwright.APIRequest.NewContextAsync();
+        }
+
+        [TearDown]
+        public async Task TearDown()
+        {
+            await _request.DisposeAsync();
+        }
+
         [Test]
         public async Task SearchMovieApiReturnsCorrectResults()
         {
-            var request = await Playwright.APIRequest.NewContextAsync();
-            var response = await request.GetAsync("https://api.themoviedb.org/3/search/movie?query=Twisters");
-            Assert.That(response.Ok, Is.True);
-            var json = await response.JsonAsync();
-            var results = json?.GetProperty("results");
-            Assert.That(results.ToString(), Does.Contain("Twisters"));
+            var response = await _request.GetAsync("https://api.themoviedb.org/3/search/movie?query=Twisters");
+            var body = await response.TextAsync();
+            var json = JsonDocument.Parse(body);
+            var results = json.RootElement.GetProperty("results").ToString();
+
+            Assert.That(response.Ok && results.Contains("Twisters"),
+                $"Expected response to be OK and results to contain 'Twisters'.\nStatus: {response.Status}\nBody: {body}");
         }
     }
     ```
