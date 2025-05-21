@@ -21,8 +21,12 @@ In this hands-on session, you will learn the fundamentals of UI automation using
 
 ## Prerequisites
 
-- Node.js (v18+ recommended)
-- VS Code
+- [Git for Windows](https://git-scm.com/downloads/win)
+- [VS Code](https://code.visualstudio.com/?wt.mc_id=vscom_downloads)
+- [Node.js](https://nodejs.org/en) (v18+ recommended)
+- [.NET 8+](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) (For C# implementation)
+
+
 
 ---
 
@@ -241,6 +245,16 @@ You can leverage GitHub Copilot agents with a Playwright MCP server to generate 
 4. **Prompt Copilot Agent for Accurate Locators**
    - Provide the feature file as reference
    - Make sure your [app is running locally](/?tab=readme-ov-file#running-the-app-locall) at [http://localhost:3000](http://localhost:3000)
+   - Create a `generate_test_prompt.md` file to your solutions under `.github/prompts` and copy/paste the following instructions:
+     ```
+     - You are a Playwright test generator.
+     - You are given a scenario, and your task is to generate a Playwright test.
+     - Do not generate test code based on the scenario alone.
+     - Do run steps one by one using the tools provided by Playwright.
+     - Only after all steps are completed, emit a Playwright TypeScript file.
+     - Save the generated test file in the tests directory.
+     - Execute the test file and iterate until the test passes.
+    ```
    - Try this prompt:
 
      ```
