@@ -142,8 +142,10 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
       });
 
       When('I search for {string}', async function (title) {       
-        await page.fill("input[placeholder='Search movies']", title); // Adjust selector as needed
-        await page.press("input[placeholder='Search movies']", 'Enter');
+        await page.getByRole('search').click();
+        var searchBox = await page.getByRole('textbox', { name: 'Search Input' });
+        searchBox.fill(title);
+        searchBox.press('Enter');
       });
 
       Then('I should see results related to {string}', async function (title) {
