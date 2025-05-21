@@ -266,8 +266,8 @@ You can leverage GitHub Copilot agents with a Playwright MCP server to generate 
    - Try this prompt:
 
      ```
-     Based on the feature file, implement the scenario using a framework that implements cucumber. 
-     Feel free to navigate to http://localhost:3000 and generate step definitions for searching for a movie called 'Sonic The HedheHog 3'. Make sure the locators match the actual UI elements.
+     Based on the feature file, implement the scenario using a cucumber js and playwright. 
+     Navigate to http://localhost:3000 and generate step definitions for searching for a movie called 'Sonic The HedheHog 3'. Make sure the locators match the actual UI elements.
      ```
 
     This will help you generate code that is tailored to your app's real DOM and selectors, improving test reliability.
