@@ -8,23 +8,27 @@ In this hands-on session, you will learn the fundamentals of UI automation using
 - Brief overview of Behaviour Driven Development (BDD)
   - [Gherkin Fundamentals](https://cucumber.io/docs/gherkin/reference/)
   - [Acceptance Testing](https://www.agilealliance.org/glossary/acceptance/)
-- Introduction to Playwright
-- Setting up the project
-- Writing and running your first Playwright test
-- Gherkin fundamentals & scenario writing
-- Hands-on exercises with the movies app
+- Setting up the System under test (SUT) - a Movie web app
+- Exercise 1: Gherkin fundamentals & scenario writing
+- Exercise 2: Writing and running your first BDD Playwright test
+- Exercise 3: API Testing
+
+
+
+
 
 ---
 
 ## Prerequisites
 
 - Node.js (v18+ recommended)
+- VS Code
 
 ---
 
 ## Getting Started
 
-To get started, follow the official instructions for the [playwright-movies-app](https://github.com/debs-obrien/playwright-movies-app):
+To get started, follow the official instructions for the [playwright-movies-app](https://github.com/debs-obrien/playwright-movies-app?tab=readme-ov-file#installation):
 
 Open a bash, command or powershell prompt:
 
@@ -61,7 +65,7 @@ In this exercise, you'll practice writing Cucumber (Gherkin) scenarios that desc
 - Switch between dark and light mode
 - (If available) Log in and log out
 
-### Your Turn: Write a Scenario for Searching a Movie
+### Write a Scenario for Searching a Movie
 
 Write a Gherkin scenario that describes how a user would search for a movie by title. Focus on the user's intent and the expected outcome, not the UI steps (e.g., avoid mentioning clicking buttons or entering text in fields directly).
 
