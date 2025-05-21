@@ -237,6 +237,55 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
 
 ---
 
+### Bonus: Use GitHub Copilot Agents with Playwright MCP Server
+
+You can leverage GitHub Copilot agents with a Playwright MCP server to generate accurate test code and selectors by interacting with your running app.
+
+#### How to Switch to Agent Mode and Install Playwright MCP Server
+
+1. **Install Playwright MCP Server**
+   - You can install the Playwright MCP extension directly from the VS Code Marketplace:
+
+     [![Install in VS Code](https://img.shields.io/badge/Install%20in-VS%20Code-blue?logo=visualstudiocode)](vscode:extension/microsoft.playwright-mcp)
+     [![Install in VS Code Insiders](https://img.shields.io/badge/Install%20in-VS%20Code%20Insiders-green?logo=visualstudiocode)](vscode-insiders:extension/microsoft.playwright-mcp)
+
+   - For more details, see the [Playwright MCP GitHub repo](https://github.com/microsoft/playwright-mcp).
+
+2. **Start the Playwright MCP Server**
+   - Open the Command Palette (`Ctrl+Shift+P`), search for `Playwright MCP: Start Server`, and start it.
+
+3. **Switch to Agent Mode in Copilot**
+   - In VS Code, open the Copilot Chat sidebar.
+   - Select Agent Mode from the drop-down to enable Agent Mode.
+
+    ![alt text](assets/AgentMode.png)
+   - Click on the tools icon to validate Playwright MCP tools are available
+
+    ![alt text](assets/MCP_Tools.png)
+
+4. **Prompt Copilot Agent for Accurate Locators**
+   - Provide the feature file as reference
+   - Make sure your [app is running locally](/?tab=readme-ov-file#running-the-app-locall) at [http://localhost:3000](http://localhost:3000)
+   - Create a `test_prompt.md` file to your solutions under `.github/prompts` and copy/paste the following instructions:
+     ```
+      - You are a Playwright test generator.
+      - You are given a scenario, and your task is to generate a Playwright test.
+      - Do not generate test code based on the scenario alone.
+      - Do run steps one by one using the tools provided by Playwright.
+      - Only after all steps are completed, emit a Playwright TypeScript file.
+      - Save the generated test file in the tests directory.
+      - Execute the test file and iterate until the test passes.
+        ```
+   - Try this prompt:
+
+     ```
+     Based on the feature file, implement the scenario using a cucumber js and playwright. 
+     Navigate to http://localhost:3000 and generate step definitions for searching for a movie called 'Sonic The HedheHog 3'. Make sure the locators match the actual UI elements.
+     ```
+
+    This will help you generate code that is tailored to your app's real DOM and selectors, improving test reliability.
+---
+
 ## Exercise 3: API Testing with Playwright
 
 **Goal:** Write a Playwright API test to verify that searching for a movie via the API returns the correct results.
