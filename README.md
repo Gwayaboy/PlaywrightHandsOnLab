@@ -221,52 +221,100 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
 
 ---
 
-### Bonus: Use GitHub Copilot Agents with Playwright MCP Server
+## Exercise 3: API Testing with Playwright
 
-You can leverage GitHub Copilot agents with a Playwright MCP server to generate accurate test code and selectors by interacting with your running app.
+**Goal:** Write a Playwright API test to verify that searching for a movie via the API returns the correct results.
 
-#### How to Switch to Agent Mode and Install Playwright MCP Server
+### Step 1: Implement Your API Test
 
-1. **Install Playwright MCP Server**
-   - You can install the Playwright MCP extension directly from the VS Code Marketplace:
+You can use Playwright’s API testing capabilities to directly test your backend endpoints. Below are examples for both JavaScript/TypeScript and C# (.NET).
 
-     [![Install in VS Code](https://img.shields.io/badge/Install%20in-VS%20Code-blue?logo=visualstudiocode)](vscode:extension/microsoft.playwright-mcp)
-     [![Install in VS Code Insiders](https://img.shields.io/badge/Install%20in-VS%20Code%20Insiders-green?logo=visualstudiocode)](vscode-insiders:extension/microsoft.playwright-mcp)
+#### JavaScript/TypeScript Example (using Playwright Test)
 
-   - For more details, see the [Playwright MCP GitHub repo](https://github.com/microsoft/playwright-mcp).
+1. Create a new test file (e.g., `tests/api/search-movie.spec.ts`).
+2. Use Playwright’s `request` fixture to send API requests.
+3. Try to implement the test yourself first! If you get stuck, reveal the sample code below:
 
-2. **Start the Playwright MCP Server**
-   - Open the Command Palette (`Ctrl+Shift+P`), search for `Playwright MCP: Start Server`, and start it.
+    <details>
+    <summary>Reveal sample code (if you're stuck)</summary>
 
-3. **Switch to Agent Mode in Copilot**
-   - In VS Code, open the Copilot Chat sidebar.
-   - Select Agent Mode from the drop-down to enable Agent Mode.
+    ```typescript
+    import { test, expect } from '@playwright/test';
 
-    ![alt text](assets/AgentMode.png)
-   - Click on the tools icon to validate Playwright MCP tools are available
+    test('search movie API returns correct results', async ({ request }) => {
+      const response = await request.get('https://api.themoviedb.org/3/search/movie', {
+        params: { query: 'Twisters' },
+        // Add authorization headers if required
+      });
+      await expect(response).toBeOK();
+      const json = await response.json();
+      expect(json.results).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            title: 'Twisters',
+          }),
+        ])
+      );
+    });
+    ```
+</details>
 
-    ![alt text](assets/MCP_Tools.png)
+4. Run your test with:
+   ```bash
+   npx playwright test tests/api/search-movie.spec.ts
+   ```
 
-4. **Prompt Copilot Agent for Accurate Locators**
-   - Provide the feature file as reference
-   - Make sure your [app is running locally](/?tab=readme-ov-file#running-the-app-locall) at [http://localhost:3000](http://localhost:3000)
-   - Create a `test_prompt.md` file to your solutions under `.github/prompts` and copy/paste the following instructions:
-     ```
-      - You are a Playwright test generator.
-      - You are given a scenario, and your task is to generate a Playwright test.
-      - Do not generate test code based on the scenario alone.
-      - Do run steps one by one using the tools provided by Playwright.
-      - Only after all steps are completed, emit a Playwright TypeScript file.
-      - Save the generated test file in the tests directory.
-      - Execute the test file and iterate until the test passes.
-        ```
-   - Try this prompt:
+#### C# Example (using Playwright .NET)
 
-     ```
-     Based on the feature file, implement the scenario using a cucumber js and playwright. 
-     Navigate to http://localhost:3000 and generate step definitions for searching for a movie called 'Sonic The HedheHog 3'. Make sure the locators match the actual UI elements.
-     ```
+1. Create a new test class (e.g., `ApiSearchMovieTests.cs`).
+2. Use Playwright’s APIRequestContext to send API requests.
+3. Try to implement the test yourself first! If you get stuck, reveal the sample code below:
 
-    This will help you generate code that is tailored to your app's real DOM and selectors, improving test reliability.
+    <details>
+    <summary>Reveal sample code (if you're stuck)</summary>
+
+    ```csharp
+    using Microsoft.Playwright.NUnit;
+    using NUnit.Framework;
+    using System.Threading.Tasks;
+
+    public class ApiSearchMovieTests : PageTest
+    {
+        [Test]
+        public async Task SearchMovieApiReturnsCorrectResults()
+        {
+            var request = await Playwright.APIRequest.NewContextAsync();
+            var response = await request.GetAsync("https://api.themoviedb.org/3/search/movie?query=Twisters");
+            Assert.That(response.Ok, Is.True);
+            var json = await response.JsonAsync();
+            var results = json?.GetProperty("results");
+            Assert.That(results.ToString(), Does.Contain("Twisters"));
+        }
+    }
+    ```
+    </details>
+
+4. Run your test with:
+   ```bash
+   dotnet test
+   ```
+
+---
+
+### Bonus: More API Test Ideas
+
+Try implementing additional API tests based on the scenarios in the app. Here are some ideas (see `tests/logged-out/api.spec.ts` for inspiration):
+
+- Test that the popular movies endpoint returns movies sorted by popularity (descending).
+- Test that the top rated movies endpoint returns movies sorted by vote average (descending).
+- Test that the upcoming movies endpoint returns movies sorted by release date (descending).
+- Test that the action genre filter only returns action movies.
+- Test that the movie credits endpoint returns expected cast and crew for a given movie.
+- Test that sorting by different fields (popularity, vote average, original title, release date) works as expected.
+- Test that the configuration endpoint returns the expected structure.
+
+Challenge yourself to:
+- Write the test without looking at the sample code first.
+- Compare your implementation to the examples in `api.spec.ts` if you get stuck.
 
 ---
