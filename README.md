@@ -8,18 +8,22 @@ Enjoy!
 
 ## Agenda
 
-1. [Brief overview of Behaviour Driven Development (BDD)](https://microsofteur-my.sharepoint.com/:p:/g/personal/frtheola_microsoft_com/ERZ-s8_OCkZFl5w79vhjCv8BEOTfA5lImxfljcyZFDDrYQ?e=ojKdLj)
+1. **[Brief overview of Behaviour Driven Development (BDD)](https://microsofteur-my.sharepoint.com/:p:/g/personal/frtheola_microsoft_com/ERZ-s8_OCkZFl5w79vhjCv8BEOTfA5lImxfljcyZFDDrYQ?e=ojKdLj)**
     - [Gherkin Fundamentals](https://cucumber.io/docs/gherkin/reference/)
     - [Acceptance Testing](https://www.agilealliance.org/glossary/acceptance/)
-2. [Setting up the System under test (SUT) - a Movie web app](?tab=readme-ov-file#prerequisites)
-3. [Exercise 1: Gherkin fundamentals & scenario writing](?tab=readme-ov-file#exercise-1-describe-movie-app-scenarios-with-gherkin)
-4. [Exercise 2: Writing and running your first BDD Playwright test](?tab=readme-ov-file#exercise-2-implement-your-bdd-playwright-test)
-    - [Bonus: Vibe coding - Use GitHub Copilot agentic feature & Playwright MCP to generate BDD tests](?tab=readme-ov-file#bonus-optional-use-github-copilot-agents-with-playwright-mcp-server)
-5. [Exercise 3: API Testing](?tab=readme-ov-file#exercise-3-api-testing-with-playwright)
+2. **[Setting up the System under test (SUT) - a Movie web app](?tab=readme-ov-file#prerequisites)**
+3. **[Exercise 1: Gherkin fundamentals & scenario writing](?tab=readme-ov-file#exercise-1-describe-movie-app-scenarios-with-gherkin)**
+4. **[Exercise 2: Writing and running your first BDD Playwright test](?tab=readme-ov-file#exercise-2-implement-your-bdd-playwright-test)**
+    - [Bonus: Vibe coding - Use GitHub Copilot agentic feature & Playwright MCP to generate BDD tests](?tab=readme-ov-file#bonus-optional-use-github-copilot-agents-with-playwright-mcp-server)**
+5. **[Exercise 3: API Testing](?tab=readme-ov-file#exercise-3-api-testing-with-playwright)**
     - [Bonus : Implement more API tests](?tab=readme-ov-file#bonus-more-api-test-ideas)
-6. [Feedback](https://forms.office.com/r/CDmayftBvF) : How was it?  What other topics would you like to explore?
+6. **Advanced Bonus Exercices:**
+    - [Snapshot Testing with Playwright]()
+    - [Mock API Responses in Playwright]()
+7. **[Feedback](https://forms.office.com/r/CDmayftBvF)** : How was it?  What other topics would you like to explore?
   
     [![alt text](assets/FeedbackQR.png)](https://forms.office.com/r/CDmayftBvF)
+
 
 ---
 
@@ -401,6 +405,99 @@ Try implementing additional API tests based on the scenarios in the app. Here ar
 Challenge yourself to:
 - Write the test without looking at the sample code first.
 - Compare your implementation to the examples in [`api.spec.ts`](https://github.com/debs-obrien/playwright-movies-app/blob/main/tests/logged-out/api.spec.ts) if you get stuck.
+
+---
+
+## Bonus Advanced Exercises
+
+<details>
+<summary><strong>Exercise 4: Visual Regression Testing with Playwright (ARIA Snapshots)</strong></summary>
+
+**Goal:** Learn how to use Playwright's ARIA snapshot feature to catch unexpected accessibility and UI changes.
+
+You can see an example of advanced ARIA snapshot testing in the [`movie-aria-snapshots.spec.ts`](https://github.com/debs-obrien/playwright-movies-app/blob/main/tests/logged-out/movie-aria-snapshots.spec.ts) file. If you get stuck, you may refer to this file as a potential solution, but try to implement the exercise yourself first for the best learning experience!
+
+### Step 1: Add an ARIA Snapshot Test
+
+1. Create a new test file (e.g., `tests/visual/movie-aria-snapshot.spec.ts`).
+2. Write a Playwright test that navigates to a movie details page and takes an ARIA snapshot:
+
+   ```typescript
+   import { test, expect } from '@playwright/test';
+
+   test('movie page ARIA snapshot', async ({ page }) => {
+     await page.goto('http://localhost:3000/movie?id=1079091&page=1');
+     await expect(page.getByRole('main')).toMatchAriaSnapshot(`
+       - main:
+         - heading "It Ends With Us" [level=1]
+         - heading "We break the pattern or the pattern breaks us." [level=2]
+         - text: ★ ★ ★ ★ ★ ★
+         - paragraph: "7.173"
+         - text: English / 131 min. / 2024
+         # ...add more ARIA structure as needed for your test
+     `);
+   });
+   ```
+
+3. Run your test with:
+   ```bash
+   npx playwright test tests/visual/movie-aria-snapshot.spec.ts
+   ```
+4. Try making a small UI or accessibility change and rerun the test to see how Playwright detects ARIA tree differences.
+
+<details>
+<summary>✅ <strong>Tips for ARIA Snapshot Testing</strong></summary>
+
+- Use `.toMatchAriaSnapshot()` to compare the accessibility tree, not just the visual layout.
+- Focus on headings, roles, and key text for robust accessibility checks.
+- Refer to the [movie-aria-snapshots.spec.ts](https://github.com/debs-obrien/playwright-movies-app/blob/main/tests/logged-out/movie-aria-snapshots.spec.ts) for a full example if you need help, but use it only as a last resort to maximize your learning.
+
+</details>
+
+</details>
+
+<details>
+<summary><strong>Exercise 5: Network Interception & Mocking</strong></summary>
+
+**Goal:** Practice intercepting and mocking network requests to test UI behavior under different backend conditions.
+
+### Step 1: Mock API Responses in Playwright
+
+1. Create a new test file (e.g., `tests/network/movie-mock-api.spec.ts`).
+2. Write a test that intercepts the movie details API and returns a custom response:
+
+   ```typescript
+   import { test, expect } from '@playwright/test';
+
+   test('movie details page with mocked API', async ({ page }) => {
+     await page.route('**/api/movie*', async route => {
+       await route.fulfill({
+         status: 200,
+         contentType: 'application/json',
+         body: JSON.stringify({
+           title: 'Mocked Movie',
+           overview: 'This is a mocked movie overview.',
+           // ...add other required fields
+         }),
+       });
+     });
+     await page.goto('http://localhost:3000/movie?id=1079091&page=1');
+     await expect(page.getByRole('heading', { name: 'Mocked Movie' })).toBeVisible();
+   });
+   ```
+
+3. Try mocking error responses (e.g., 500 or 404) and verify the app displays error messages as expected.
+
+<details>
+<summary>✅ <strong>Tips for Network Mocking</strong></summary>
+
+- Use `page.route()` to intercept and modify network requests.
+- Test edge cases: empty results, slow responses, and error codes.
+- Combine with visual or accessibility assertions for robust tests.
+
+</details>
+
+</details>
 
 ---
 Please provide us [feedback](https://forms.office.com/r/CDmayftBvF) : 
