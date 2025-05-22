@@ -1,7 +1,10 @@
 # Playwright Hands-on Lunch & Learn
 
 Welcome to the Playwright Hands-on & Lunch Learn!  
+
 In this hands-on session, you will learn the fundamentals of UI automation using [Playwright](https://playwright.dev/) by testing the [playwright-movies-app](https://github.com/debs-obrien/playwright-movies-app).
+
+Enjoy!
 
 ## Agenda
 
@@ -11,19 +14,12 @@ In this hands-on session, you will learn the fundamentals of UI automation using
 2. [Setting up the System under test (SUT) - a Movie web app](?tab=readme-ov-file#prerequisites)
 3. [Exercise 1: Gherkin fundamentals & scenario writing](?tab=readme-ov-file#exercise-1-describe-movie-app-scenarios-with-gherkin)
 4. [Exercise 2: Writing and running your first BDD Playwright test](?tab=readme-ov-file#exercise-2-implement-your-bdd-playwright-test)
-    - [Bonus: Use GitHub Copilot agentic feature & Playwright MCP to generate BDD tests](?tab=readme-ov-file#bonus-optional-use-github-copilot-agents-with-playwright-mcp-server)
+    - [Bonus: Vibe coding - Use GitHub Copilot agentic feature & Playwright MCP to generate BDD tests](?tab=readme-ov-file#bonus-optional-use-github-copilot-agents-with-playwright-mcp-server)
 5. [Exercise 3: API Testing](?tab=readme-ov-file#exercise-3-api-testing-with-playwright)
     - [Bonus : Implement more API tests](?tab=readme-ov-file#bonus-more-api-test-ideas)
 6. [Feedback](https://forms.office.com/r/CDmayftBvF) : How was it?  What other topics would you like to explore?
   
     [![alt text](assets/FeedbackQR.png)](https://forms.office.com/r/CDmayftBvF)
-  
-  
-  
-
-
-
-
 
 ---
 
@@ -407,3 +403,8 @@ Challenge yourself to:
 - Compare your implementation to the examples in [`api.spec.ts`](https://github.com/debs-obrien/playwright-movies-app/blob/main/tests/logged-out/api.spec.ts) if you get stuck.
 
 ---
+Please provide us [feedback](https://forms.office.com/r/CDmayftBvF) : 
+- How was it?  
+- What other topics would you like to explore?
+  
+   [![alt text](assets/FeedbackQR.png)](https://forms.office.com/r/CDmayftBvF)
