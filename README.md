@@ -14,7 +14,7 @@ Enjoy!
 2. **[Setting up the System under test (SUT) - a Movie web app](?tab=readme-ov-file#prerequisites)**
 3. **[Exercise 1: Gherkin fundamentals & scenario writing](?tab=readme-ov-file#exercise-1-describe-movie-app-scenarios-with-gherkin)**
 4. **[Exercise 2: Writing and running your first BDD Playwright test](?tab=readme-ov-file#exercise-2-implement-your-bdd-playwright-test)**
-    - [Bonus: Vibe coding - Use GitHub Copilot agentic feature & Playwright MCP to generate BDD tests](?tab=readme-ov-file#bonus-optional-use-github-copilot-agents-with-playwright-mcp-server)**
+    - [Bonus: Vibe coding - Use GitHub Copilot agentic feature & Playwright MCP to generate BDD tests](?tab=readme-ov-file#bonus-optional-use-github-copilot-agents-with-playwright-mcp-server)
 5. **[Exercise 3: API Testing](?tab=readme-ov-file#exercise-3-api-testing-with-playwright)**
     - [Bonus : Implement more API tests](?tab=readme-ov-file#bonus-more-api-test-ideas)
 6. **[Advanced Bonus Exercices](?tab=readme-ov-file#bonus-advanced-exercises)**
