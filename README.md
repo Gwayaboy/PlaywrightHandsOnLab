@@ -450,14 +450,14 @@ Challenge yourself to:
 4. Try making a small UI or accessibility change and rerun the test to see how Playwright detects ARIA tree differences.
 
 
-✅ Tips for ARIA Snapshot Testing
+✅ <strong>Tips for ARIA Snapshot Testing</strong>
 
 - Use `.toMatchAriaSnapshot()` to compare the accessibility tree, not just the visual layout.
 - [Snapshopt testing with playwright](https://playwright.dev/docs/aria-snapshots)
 - Focus on headings, roles, and key text for robust accessibility checks.
 - Refer to the [movie-aria-snapshots.spec.ts](https://github.com/debs-obrien/playwright-movies-app/blob/main/tests/logged-out/movie-aria-snapshots.spec.ts) for a full example if you need help, but use it only as a last resort to maximize your learning.
 
-</details>
+
 
 </details>
 
@@ -466,41 +466,39 @@ Challenge yourself to:
 
 **Goal:** Practice intercepting and mocking network requests to test UI behavior under different backend conditions.
 
-### Step 1: Mock API Responses in Playwright
-
 1. Create a new test file (e.g., `tests/network/movie-mock-api.spec.ts`).
 2. Write a test that intercepts the movie details API and returns a custom response:
+    <details>
+    <summary>Reveal sample code (if you're stuck)</summary>
+    
+    ```typescript
+    import { test, expect } from '@playwright/test';
 
-   ```typescript
-   import { test, expect } from '@playwright/test';
-
-   test('movie details page with mocked API', async ({ page }) => {
-     await page.route('**/api/movie*', async route => {
-       await route.fulfill({
-         status: 200,
-         contentType: 'application/json',
-         body: JSON.stringify({
-           title: 'Mocked Movie',
-           overview: 'This is a mocked movie overview.',
-           // ...add other required fields
-         }),
-       });
-     });
-     await page.goto('http://localhost:3000/movie?id=1079091&page=1');
-     await expect(page.getByRole('heading', { name: 'Mocked Movie' })).toBeVisible();
-   });
-   ```
-
+    test('movie details page with mocked API', async ({ page }) => {
+      await page.route('**/api/movie*', async route => {
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({
+            title: 'Mocked Movie',
+            overview: 'This is a mocked movie overview.',
+            // ...add other required fields
+          }),
+        });
+      });
+      await page.goto('http://localhost:3000/movie?id=1079091&page=1');
+      await expect(page.getByRole('heading', { name: 'Mocked Movie' })).toBeVisible();
+    });
+    ```
+    <details>
 3. Try mocking error responses (e.g., 500 or 404) and verify the app displays error messages as expected.
 
-<details>
-<summary>✅ <strong>Tips for Network Mocking</strong></summary>
+✅ <strong>Tips for Network Mocking</strong>
 
 - Use `page.route()` to intercept and modify network requests.
 - Test edge cases: empty results, slow responses, and error codes.
 - Combine with visual or accessibility assertions for robust tests.
 
-</details>
 
 </details>
 
