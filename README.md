@@ -12,7 +12,11 @@ In this hands-on session, you will learn the fundamentals of UI automation using
 - Exercise 1: Gherkin fundamentals & scenario writing
 - Exercise 2: Writing and running your first BDD Playwright test
 - Exercise 3: API Testing
-- Feedback: How was it? What other topics would you like to explore?
+- [Feedback](https://forms.office.com/r/CDmayftBvF)
+  - How was it? 
+  - What other topics would you like to explore?
+  
+  ![alt text](assets/FeedbackQR.png)
 
 
 
