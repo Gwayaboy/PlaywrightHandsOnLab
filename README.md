@@ -415,9 +415,6 @@ Challenge yourself to:
 
 **Goal:** Learn how to use Playwright's ARIA snapshot feature to catch unexpected accessibility and UI changes.
 
-
-#### Add an ARIA Snapshot Test
-
 1. Create a new test file (e.g., `tests/visual/movie-aria-snapshot.spec.ts`).
 2. Write a Playwright test that navigates to a movie details page and takes an ARIA snapshot:
     
