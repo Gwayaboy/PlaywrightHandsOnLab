@@ -120,7 +120,7 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
      So that I can quickly find the movie I want to watch
 
      Scenario: Searching for a movie that exists
-       Given the is on the web movies app landing page
+       Given the user is on the web movies app landing page
        When the user searches for "Sonic the Hedgehog 3"
        Then the user should see results related to "Sonic the Hedgehog 3"
    ```
