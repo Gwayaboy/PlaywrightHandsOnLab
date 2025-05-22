@@ -38,7 +38,7 @@ Enjoy!
 
 ## Getting Started
 
-To get started, follow the official instructions for the [playwright-movies-app](https://github.com/debs-obrien/playwright-movies-app?tab=readme-ov-file#installation):
+To get started, follow the official installation instructions from the [playwright-movies-app](https://github.com/debs-obrien/playwright-movies-app?tab=readme-ov-file#installation) (also below):
 
 Open a bash, command or powershell prompt:
 
