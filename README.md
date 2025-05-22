@@ -5,13 +5,14 @@ In this hands-on session, you will learn the fundamentals of UI automation using
 
 ## Agenda
 
-- Brief overview of Behaviour Driven Development (BDD)
+- [Brief overview of Behaviour Driven Development (BDD)](https://microsofteur-my.sharepoint.com/:p:/g/personal/frtheola_microsoft_com/ERZ-s8_OCkZFl5w79vhjCv8BEOTfA5lImxfljcyZFDDrYQ?e=ojKdLj)
   - [Gherkin Fundamentals](https://cucumber.io/docs/gherkin/reference/)
   - [Acceptance Testing](https://www.agilealliance.org/glossary/acceptance/)
 - Setting up the System under test (SUT) - a Movie web app
 - Exercise 1: Gherkin fundamentals & scenario writing
 - Exercise 2: Writing and running your first BDD Playwright test
 - Exercise 3: API Testing
+- Feedback: How was it? What other topics would you like to explore?
 
 
 
