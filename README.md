@@ -416,27 +416,32 @@ Challenge yourself to:
 **Goal:** Learn how to use Playwright's ARIA snapshot feature to catch unexpected accessibility and UI changes.
 
 
-### Step 1: Add an ARIA Snapshot Test
+#### Add an ARIA Snapshot Test
 
 1. Create a new test file (e.g., `tests/visual/movie-aria-snapshot.spec.ts`).
 2. Write a Playwright test that navigates to a movie details page and takes an ARIA snapshot:
+    
+      <details>
+      <summary>Reveal sample code (if you're stuck)</summary>
+      
+      ```typescript
+      import { test, expect } from '@playwright/test';
 
-   ```typescript
-   import { test, expect } from '@playwright/test';
+      test('movie page ARIA snapshot', async ({ page }) => {
+        await page.goto('http://localhost:3000/movie?id=1079091&page=1');
+        await expect(page.getByRole('main')).toMatchAriaSnapshot(`
+          - main:
+            - heading "It Ends With Us" [level=1]
+            - heading "We break the pattern or the pattern breaks us." [level=2]
+            - text: ★ ★ ★ ★ ★ ★
+            - paragraph: "7.173"
+            - text: English / 131 min. / 2024
+            # ...add more ARIA structure as needed for your test
+        `);
+      });
+      ```
 
-   test('movie page ARIA snapshot', async ({ page }) => {
-     await page.goto('http://localhost:3000/movie?id=1079091&page=1');
-     await expect(page.getByRole('main')).toMatchAriaSnapshot(`
-       - main:
-         - heading "It Ends With Us" [level=1]
-         - heading "We break the pattern or the pattern breaks us." [level=2]
-         - text: ★ ★ ★ ★ ★ ★
-         - paragraph: "7.173"
-         - text: English / 131 min. / 2024
-         # ...add more ARIA structure as needed for your test
-     `);
-   });
-   ```
+      </details>
 
 3. Run your test with:
    ```bash
@@ -448,6 +453,7 @@ Challenge yourself to:
 ✅ Tips for ARIA Snapshot Testing
 
 - Use `.toMatchAriaSnapshot()` to compare the accessibility tree, not just the visual layout.
+- [Snapshopt testing with playwright](https://playwright.dev/docs/aria-snapshots)
 - Focus on headings, roles, and key text for robust accessibility checks.
 - Refer to the [movie-aria-snapshots.spec.ts](https://github.com/debs-obrien/playwright-movies-app/blob/main/tests/logged-out/movie-aria-snapshots.spec.ts) for a full example if you need help, but use it only as a last resort to maximize your learning.
 
