@@ -415,7 +415,6 @@ Challenge yourself to:
 
 **Goal:** Learn how to use Playwright's ARIA snapshot feature to catch unexpected accessibility and UI changes.
 
-You can see an example of advanced ARIA snapshot testing in the [`movie-aria-snapshots.spec.ts`](https://github.com/debs-obrien/playwright-movies-app/blob/main/tests/logged-out/movie-aria-snapshots.spec.ts) file. If you get stuck, you may refer to this file as a potential solution, but try to implement the exercise yourself first for the best learning experience!
 
 ### Step 1: Add an ARIA Snapshot Test
 
@@ -445,8 +444,8 @@ You can see an example of advanced ARIA snapshot testing in the [`movie-aria-sna
    ```
 4. Try making a small UI or accessibility change and rerun the test to see how Playwright detects ARIA tree differences.
 
-<details>
-<summary>✅ <strong>Tips for ARIA Snapshot Testing</strong></summary>
+
+✅ Tips for ARIA Snapshot Testing
 
 - Use `.toMatchAriaSnapshot()` to compare the accessibility tree, not just the visual layout.
 - Focus on headings, roles, and key text for robust accessibility checks.
