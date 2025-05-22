@@ -5,18 +5,18 @@ In this hands-on session, you will learn the fundamentals of UI automation using
 
 ## Agenda
 
-- [Brief overview of Behaviour Driven Development (BDD)](https://microsofteur-my.sharepoint.com/:p:/g/personal/frtheola_microsoft_com/ERZ-s8_OCkZFl5w79vhjCv8BEOTfA5lImxfljcyZFDDrYQ?e=ojKdLj)
-  - [Gherkin Fundamentals](https://cucumber.io/docs/gherkin/reference/)
-  - [Acceptance Testing](https://www.agilealliance.org/glossary/acceptance/)
-- [Setting up the System under test (SUT) - a Movie web app](?tab=readme-ov-file#prerequisites)
-- [Exercise 1: Gherkin fundamentals & scenario writing](?tab=readme-ov-file#exercise-1-describe-movie-app-scenarios-with-gherkin)
-- [Exercise 2: Writing and running your first BDD Playwright test](?tab=readme-ov-file#exercise-2-implement-your-bdd-playwright-test)
-  - [Bonus: Use GitHub Copilot agentic feature & Playwright MCP to generate BDD tests](?tab=readme-ov-file#bonus-optional-use-github-copilot-agents-with-playwright-mcp-server)
-- [Exercise 3: API Testing](?tab=readme-ov-file#exercise-3-api-testing-with-playwright)
-  - [Bonus : Implement more API tests](?tab=readme-ov-file#bonus-more-api-test-ideas)
-- [Feedback](https://forms.office.com/r/CDmayftBvF) : How was it?  What other topics would you like to explore?
+1. [Brief overview of Behaviour Driven Development (BDD)](https://microsofteur-my.sharepoint.com/:p:/g/personal/frtheola_microsoft_com/ERZ-s8_OCkZFl5w79vhjCv8BEOTfA5lImxfljcyZFDDrYQ?e=ojKdLj)
+    - [Gherkin Fundamentals](https://cucumber.io/docs/gherkin/reference/)
+    - [Acceptance Testing](https://www.agilealliance.org/glossary/acceptance/)
+2. [Setting up the System under test (SUT) - a Movie web app](?tab=readme-ov-file#prerequisites)
+3. [Exercise 1: Gherkin fundamentals & scenario writing](?tab=readme-ov-file#exercise-1-describe-movie-app-scenarios-with-gherkin)
+4. [Exercise 2: Writing and running your first BDD Playwright test](?tab=readme-ov-file#exercise-2-implement-your-bdd-playwright-test)
+    - [Bonus: Use GitHub Copilot agentic feature & Playwright MCP to generate BDD tests](?tab=readme-ov-file#bonus-optional-use-github-copilot-agents-with-playwright-mcp-server)
+5. [Exercise 3: API Testing](?tab=readme-ov-file#exercise-3-api-testing-with-playwright)
+    - [Bonus : Implement more API tests](?tab=readme-ov-file#bonus-more-api-test-ideas)
+6. [Feedback](https://forms.office.com/r/CDmayftBvF) : How was it?  What other topics would you like to explore?
   
-  [![alt text](assets/FeedbackQR.png)](https://forms.office.com/r/CDmayftBvF)
+    [![alt text](assets/FeedbackQR.png)](https://forms.office.com/r/CDmayftBvF)
   
   
   
