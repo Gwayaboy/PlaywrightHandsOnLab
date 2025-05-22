@@ -120,9 +120,9 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
      So that I can quickly find the movie I want to watch
 
      Scenario: Searching for a movie that exists
-       Given I am on web movies app landing page
-       When I search for "Sonic the Hedgehog 3"
-       Then I should see results related to "Sonic the Hedgehog 3"
+       Given the is on the web movies app landing page
+       When the user searches for "Sonic the Hedgehog 3"
+       Then the user should see results related to "Sonic the Hedgehog 3"
    ```
 
 #### JavaScript/TypeScript Example (using Cucumber.js)
@@ -159,20 +159,20 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
 
       let browser, page;
 
-      Given('I am on web movies app landing page', async function () {
+      Given('The is on the web movies app landing page', async function () {
         browser = await chromium.launch();
         page = await browser.newPage();
         await page.goto('http://localhost:3000');
       });
 
-      When('I search for {string}', async function (title) {       
+      When('The user searches for {string}', async function (title) {       
         await page.getByRole('search').click();
         var searchBox = await page.getByRole('textbox', { name: 'Search Input' });
         searchBox.fill(title);
         searchBox.press('Enter');
       });
 
-      Then('I should see results related to {string}', async function (title) {
+      Then('The user should see results related to {string}', async function (title) {
         await page.waitForSelector('.movie-list');
         const results = await page.$$(".movie-card:has-text('" + title + "')");
         if (results.length === 0) throw new Error('No results found for ' + title);
@@ -209,7 +209,7 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
        private IPage page;
        private IBrowser browser;
 
-       [Given(@"I am on web movies app landing page")]
+       [Given(@"The use is on the web movies app landing page")]
        public async Task GivenIamOnTheWebMoviesAppLandingPage()
        {
            var playwright = await Playwright.CreateAsync();
@@ -219,7 +219,7 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
            
        }
 
-       [When(@"I search for "(.*)"")]
+       [When(@"The user searches for "(.*)"")]
        public async Task WhenISearchFor(string title)
        {
            await page.GetByRole('search').click();
@@ -228,7 +228,7 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
            await searchBox.PressAsync("Enter");
        }
 
-       [Then(@"I should see results related to "(.*)"")]
+       [Then(@"The user should see results related to "(.*)"")]
        public async Task ThenIShouldSeeResultsRelatedTo(string title)
        {
            var results = await page.Locator($".movie-card:has-text('{title}')").CountAsync();
