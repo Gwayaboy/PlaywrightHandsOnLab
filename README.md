@@ -141,10 +141,8 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
     ├── src/
     │   ├── features/
     │   │   └── *.feature
-    │   ├── steps/
-    │   │   └── *.js
-    │   └── config/
-    │       └── cucumber.js
+    |   |    ├── steps/
+    │   │       └── *.js
     ├── package.json
     ├── tsconfig.json
     ```
