@@ -187,7 +187,7 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
 
 #### C# Example (using Reqnroll + Playwright)
 
-1. Follow the [Reqnroll quickstart guide](https://docs.reqnroll.net/latest/quickstart/index.html) and [Microsoft.Playwright](https://playwright.dev/dotnet/) to set up your project.
+1. Follow the [Reqnroll/Playwright quickstart guide](https://blog.testery.io/reqnroll-and-playwright-in-net/) to set up your project.
 2. Create a new solution/folder for your test project
 3. Create a `.feature` file to store your Feature and movie search scenario (e.g., `MovieSearch.feature`). 
 4. Create a step definition file (e.g., <code>Steps/MovieSearchSteps.cs</code>).
