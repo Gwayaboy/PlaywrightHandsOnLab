@@ -103,6 +103,10 @@ Take screenshots of the key authenticated pages and compare them with the pre-lo
 
 **Demo Prompt:**
 ```
+Now for your exploration based on the behaviour described from #file:movie_search.feature  and your context of the actual pages. Can you implement the playwright tests using cucumber js following the https://cucumber.io/docs/guides/10-minute-tutorial
+```
+
+```
 Based on your exploration of the website, create comprehensive Cucumber feature files for the authenticated user journeys you discovered. Include both authenticated and non-authenticated scenarios.
 
 Create a Cucumber.js project with Playwright using this structure:
