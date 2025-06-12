@@ -103,7 +103,7 @@ Take screenshots of the key authenticated pages and compare them with the pre-lo
 
 **Demo Prompt:**
 ```
-Based on your exploration of the website, create comprehensive Cucumber feature files for the key user journeys you discovered. Include both authenticated and non-authenticated scenarios.
+Based on your exploration of the website, create comprehensive Cucumber feature files for the authenticated user journeys you discovered. Include both authenticated and non-authenticated scenarios.
 
 Create a Cucumber.js project with Playwright using this structure:
 project-root/
