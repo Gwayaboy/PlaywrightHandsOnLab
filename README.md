@@ -252,10 +252,7 @@ You can leverage GitHub Copilot agents with a Playwright MCP server to generate 
    - You can install the Playwright MCP extension directly from the VS Code Marketplace:
   
      [<img src="https://img.shields.io/badge/VS_Code-VS_Code?style=flat-square&label=Install%20Server&color=0098FF" alt="Install in VS Code">](https://insiders.vscode.dev/redirect?url=vscode%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522playwright%2522%252C%2522command%2522%253A%2522npx%2522%252C%2522args%2522%253A%255B%2522%2540playwright%252Fmcp%2540latest%2522%255D%257D) [<img alt="Install in VS Code Insiders" src="https://img.shields.io/badge/VS_Code_Insiders-VS_Code_Insiders?style=flat-square&label=Install%20Server&color=24bfa5">](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522playwright%2522%252C%2522command%2522%253A%2522npx%2522%252C%2522args%2522%253A%255B%2522%2540playwright%252Fmcp%2540latest%2522%255D%257D)
-
-     [![Install in VS Code](https://img.shields.io/badge/Install%20in-VS%20Code-blue?logo=visualstudiocode)](vscode:extension/microsoft.playwright-mcp)
-     [![Install in VS Code Insiders](https://img.shields.io/badge/Install%20in-VS%20Code%20Insiders-green?logo=visualstudiocode)](vscode-insiders:extension/microsoft.playwright-mcp)
-
+ 
    - For more details, see the [Playwright MCP GitHub repo](https://github.com/microsoft/playwright-mcp).
 
 2. **Start the Playwright MCP Server**
