@@ -141,7 +141,7 @@ An example ```Movie Search``` Feature and ```Searching for a movie that exists``
     ├── src/
     │   ├── features/
     │   │   └── *.feature
-    |   |    ├── steps/
+    |   |   ├── steps/
     │   │       └── *.js
     ├── package.json
     ├── tsconfig.json
@@ -284,7 +284,8 @@ You can leverage GitHub Copilot agents with a Playwright MCP server to generate 
 
      ```
      Based on the feature file, implement the scenario using a cucumber js and playwright. 
-     Navigate to http://localhost:3000 and generate step definitions for searching for a movie called 'Sonic The HedheHog 3'. Make sure the locators match the actual UI elements. 
+     Using Playwright MCP server tools, navigate to http://localhost:3000 and generate step definitions for searching for a movie called 'Sonic The HedheHog 3'.
+     Make sure the locators match the actual UI elements. 
      Execute and verify all test passes.     
      ```
 
