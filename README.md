@@ -284,7 +284,7 @@ You can leverage GitHub Copilot agents with a Playwright MCP server to generate 
 
      ```
      Based on the feature file, implement the scenario using  cucumber.js and playwright. 
-     Using Playwright MCP server tools, navigate to http://localhost:3000 and generate step definitions for searching for a movie called 'Sonic The HedheHog 3'.
+     Using Playwright MCP server tools, navigate to http://localhost:3000 whihc already runs locally and generate step definitions for searching for a movie called 'Sonic The HedheHog 3'.
      Make sure the locators match the actual UI elements.
      Respect cucumber.js simplest folder structure to avoid unnecessary configuration to make sure features, step definition are discoverable and executable:
 
@@ -296,7 +296,7 @@ You can leverage GitHub Copilot agents with a Playwright MCP server to generate 
         ├── package.json
         └── cucumber.js
 
-     usse simple npx cucumber-js to execute and verify all test passes.     
+     use simple npx cucumber-js to execute and verify all test passes.     
      ```
 
     This will help you generate code that is tailored to your app's real DOM and selectors, improving test reliability.
