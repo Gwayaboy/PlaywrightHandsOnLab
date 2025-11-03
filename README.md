@@ -20,7 +20,7 @@ Enjoy!
 6. **[Advanced Bonus Exercices](?tab=readme-ov-file#bonus-advanced-exercises)**
     - Exercise 4: Snapshot Testing with Playwright
     - Exercise 5: Mock API Responses in Playwright
-7. **[Feedback](https://forms.office.com/r/CDmayftBvF)** : How was it?  What other topics would you like to explore?
+7. **[Feedback](https://forms.office.com/r/xyviQc65yL)** : How was it?  What other topics would you like to explore next time?
   
     [![alt text](assets/FeedbackQR.png)](https://forms.office.com/r/CDmayftBvF)
 
