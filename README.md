@@ -1,4 +1,4 @@
-# Playwright Hands-on Lunch & Learn
+# Playwright Hands-on Workshop
 
 Welcome to the Playwright Hands-on & Lunch Learn!  
 
