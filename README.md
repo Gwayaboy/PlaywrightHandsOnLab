@@ -323,12 +323,32 @@ You can use Playwright’s API testing capabilities to directly test your backen
     import { test, expect } from '@playwright/test';
 
     test('search movie API returns correct results', async ({ request }) => {
+      // Set up debugging breakpoint here
+      console.log('Starting movie search test...');
+      
+      const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+      const accessToken = process.env.NEXT_PUBLIC_TMDB_API_READ_ACCESS_TOKEN;
+      
+      if (!apiKey || !accessToken) {
+        throw new Error('TMDB API credentials not found in environment variables');
+      }
+      
       const response = await request.get('https://api.themoviedb.org/3/search/movie', {
-        params: { query: 'Twisters' },
-        // Add authorization headers if required
+        params: { 
+          query: 'Twisters',
+          api_key: apiKey
+        },
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        }
       });
+      
+      
       await expect(response).toBeOK();
       const json = await response.json();
+      
+      
       expect(json.results).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
@@ -336,6 +356,7 @@ You can use Playwright’s API testing capabilities to directly test your backen
           }),
         ])
       );
+      
     });
     ```
 </details>
