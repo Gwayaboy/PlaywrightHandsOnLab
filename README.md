@@ -363,7 +363,7 @@ You can use Playwright’s API testing capabilities to directly test your backen
 
 4. Run your test with:
    ```bash
-   npx playwright test tests/api/search-movie.spec.ts
+   npx playwright test tests/api/*
    ```
 
 #### C# Example (using Playwright .NET)
